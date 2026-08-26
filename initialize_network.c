@@ -2,13 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <time.h>
 
 #include "Chess-AI.h"
 
 float generate_random_small_weight() {
     float weight = 0.0f;
-    
+
     weight = (((float)rand() / RAND_MAX) * 2 - 1) * INITIAL_WEIGHT_VALUE_LIMIT;
+    printf("%.4f ", weight);
     return weight;
 }
 
@@ -50,6 +52,7 @@ int initialize_network() {
     //    cJSON_AddNumberToObject(json, "age", 30);
     //    cJSON_AddStringToObject(json, "email", "john.doe@example.com");
 
+    srand(time(NULL));
     initialize_layers(json);
 
     // convert the cJSON object to a JSON string
