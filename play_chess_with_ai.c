@@ -1,4 +1,4 @@
-#include "Chess-AI.h"
+#include "AI.h"
 
 // int main() {
 //     float inputs[INPUT_SIZE];

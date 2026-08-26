@@ -1,9 +1,19 @@
-#include "Chess-AI.h"
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "AI.h"
 
 int main() {
-    // float inputs[INPUT_SIZE];
-    // #define NUMBER_OF_LAYERS 3 // including output
-    // #define SIZE_OF_LAYERS {128, 64, 1} // the last are outputs
+    layer_t *layer;
+    char *text = NULL;
 
-    initialize_network();
+    if (access(AI_FILE_NAME, R_OK) == -1) {
+        create_ai_json();
+    }
+    read_file(AI_FILE_NAME, &text);
+    read_ai_json(layer);
+    //printf("%s\n", text);
+
+    free(text);
+    return 0;
 }

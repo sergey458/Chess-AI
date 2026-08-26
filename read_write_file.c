@@ -1,14 +1,66 @@
 #include <stdio.h>
-#include "Chess-AI.h"
+#include <stdlib.h>
+#include "AI.h"
 
-int write_in_file(char *json_str) {
+char *read_line(FILE *file) {
+    size_t capacity = 64;
+    size_t length = 0;
+
+    char *buffer = malloc(capacity);
+    if (buffer == NULL)
+        return NULL;
+
+    int c;
+
+    while ((c = fgetc(file)) != EOF) {
+
+        if (length + 1 >= capacity) {
+            size_t new_capacity = capacity * 2;
+
+            char *tmp = realloc(buffer, new_capacity);
+            if (tmp == NULL) {
+                free(buffer);
+                return NULL;
+            }
+
+            buffer = tmp;
+            capacity = new_capacity;
+        }
+
+        buffer[length++] = (char)c;
+    }
+
+    if (c == EOF && length == 0) {
+        free(buffer);
+        return NULL;
+    }
+
+    buffer[length] = '\0';
+
+    return buffer;
+}
+
+int write_in_file(char *file_name, char *text) {
     // write the JSON string to a file
-    FILE *fp = fopen(AI_FILE_NAME, "w");
+    FILE *fp = fopen(file_name, "w");
     if (fp == NULL) {
         printf("Error: Unable to open the file.\n");
-        return 1;
+        return -1;
     }
-        //    printf("%s\n", json_str);
-    fputs(json_str, fp);
+    fputs(text, fp);
     fclose(fp);
+    return 0;
+}
+
+int read_file(char *file_name, char **text) {
+    FILE *fp = fopen(file_name, "r");
+    if (fp == NULL) {
+        printf("Error: Unable to open the file.\n");
+        return -1;
+    }
+
+    *text = read_line(fp);
+
+    fclose(fp);
+    return 0;
 }
