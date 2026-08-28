@@ -15,16 +15,34 @@
 #define INITIAL_BIASES_VALUE 0.0f
 #define INITIAL_BIASES_GRADIENTS_VALUE 0.0f
 
+#define WEIGHTS_NAME_IN_JSON "weights" // max 64 characters
+#define WEIGHTS_GRADIENTS_NAME_IN_JSON "weights_gradients" // max 64 characters
+#define BIASES_NAME_IN_JSON "biases" // max 64 characters
+#define BIASES_GRADIENTS_NAME_IN_JSON "biases_gradients" // max 64 characters
+
 typedef struct layer_t {
     float *weights;
     float *weights_gradients;
     float *biases;
     float *biases_gradients;
+    int weights_number;
+    int weights_gradients_number;
+    int biases_number;
+    int biases_gradients_number;
+    struct layer_t *next;
 } layer_t;
 
+typedef enum ArrayType_t {
+    WEIGHTS,
+    WEIGHTS_GRADIENTS,
+    BIASES,
+    BIASES_GRADIENTS
+} ArrayType_t;
+
 int create_ai_json();
-int read_ai_json(layer_t *layer);
+layer_t *convert_text_to_struct(char *text, layer_t *layer);
 int write_in_file(char *file_name, char *text);
 int read_file(char *file_name, char **text);
+int print_array_of_floats(float *array, int arraySize);
 
 #endif

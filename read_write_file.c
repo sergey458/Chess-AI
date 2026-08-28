@@ -41,7 +41,6 @@ char *read_line(FILE *file) {
 }
 
 int write_in_file(char *file_name, char *text) {
-    // write the JSON string to a file
     FILE *fp = fopen(file_name, "w");
     if (fp == NULL) {
         printf("Error: Unable to open the file.\n");
