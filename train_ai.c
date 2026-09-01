@@ -47,7 +47,6 @@ int main() {
     }
     read_file(AI_FILE_NAME, &text);
     layer = convert_text_to_struct(text, layer);
-    printf("\n\nstart\n\n");
     print_layers(layer);
 
     free(layer);

@@ -8,12 +8,9 @@ int convert_json_to_array(int arraySize, cJSON *JSONarray, layer_t *layer, Array
     cJSON *itemFloat = NULL;
     float f;
 
-    printf("\n\n");
-    printf("arraySize = %i\n", arraySize);
     for (int i = 0; i < arraySize; i++) {
         itemFloat = cJSON_GetArrayItem(JSONarray, i);
         f = itemFloat->valuedouble;
-        printf("%.6f %.6f /", itemFloat->valuedouble, f);
         if (ArrayType == WEIGHTS) {
             layer->weights[i] = f;
         } else if (WEIGHTS_GRADIENTS) {
