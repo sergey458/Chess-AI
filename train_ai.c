@@ -52,7 +52,7 @@ int main() {
     layer = reverse_struct_list(layer);
     print_layers(layer);
 
-    free(layer);
+    free_layer(layer);
     free(text);
     return 0;
 }
