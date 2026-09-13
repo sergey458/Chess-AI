@@ -38,8 +38,6 @@ int print_layers(layer_t *layer) {
 
 int main() {
     layer_t *layer = NULL;
-    // layer_t *layer = malloc(sizeof(layer_t));
-    // layer->next = NULL;
     char *text = NULL;
 
     if (access(AI_FILE_NAME, R_OK) == -1) {
@@ -47,6 +45,7 @@ int main() {
     }
     read_file(AI_FILE_NAME, &text);
     layer = convert_text_to_struct(text, layer);
+    layer = reverse_struct_list(layer);
     print_layers(layer);
 
     free(layer);

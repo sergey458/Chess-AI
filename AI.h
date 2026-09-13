@@ -41,6 +41,7 @@ typedef enum ArrayType_t {
 
 int create_ai_json();
 layer_t *convert_text_to_struct(char *text, layer_t *layer);
+layer_t *reverse_struct_list(layer_t *layer);
 int write_in_file(char *file_name, char *text);
 int read_file(char *file_name, char **text);
 int print_array_of_floats(float *array, int arraySize);
