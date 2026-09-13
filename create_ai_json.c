@@ -14,7 +14,8 @@ float generate_random_small_weight() {
 }
 
 int initialize_layers(cJSON *json) {
-    int size_of_layers[NUMBER_OF_LAYERS] = SIZE_OF_LAYERS;
+    int size_of_weights[NUMBER_OF_LAYERS] = SIZE_OF_WEIGHTS;
+    int size_of_biases[NUMBER_OF_LAYERS] = SIZE_OF_BIASES;
     char weights_name[64] = WEIGHTS_NAME_IN_JSON;
     char weights_gradients_name[64] = WEIGHTS_GRADIENTS_NAME_IN_JSON;
     char biases_name[64] = BIASES_NAME_IN_JSON;
@@ -26,11 +27,13 @@ int initialize_layers(cJSON *json) {
         cJSON *weights_gradients = cJSON_CreateArray();
         cJSON *biases = cJSON_CreateArray();
         cJSON *biases_gradients = cJSON_CreateArray();
-        for (int j = 0; j < size_of_layers[i]; j++) {
+        for (int j = 0; j < size_of_weights[i]; j++) {
             cJSON_AddItemToArray(weights, cJSON_CreateNumber(INITIAL_WEIGHTS_VALUE));
             cJSON_AddItemToArray(weights_gradients, cJSON_CreateNumber(INITIAL_WEIGHTS_GRADIENTS_VALUE));
-            cJSON_AddItemToArray(biases, cJSON_CreateNumber(INITIAL_BIASES_VALUE));
-            cJSON_AddItemToArray(biases_gradients, cJSON_CreateNumber(INITIAL_BIASES_GRADIENTS_VALUE));
+            if (j < size_of_biases[i]) {
+                cJSON_AddItemToArray(biases, cJSON_CreateNumber(INITIAL_BIASES_VALUE));
+                cJSON_AddItemToArray(biases_gradients, cJSON_CreateNumber(INITIAL_BIASES_GRADIENTS_VALUE));
+            }
         }
         snprintf(number, sizeof(number), "%d", i);
         cJSON_AddItemToObject(json, strcat(weights_name, number), weights);

@@ -56,14 +56,17 @@ layer_t *convert_text_to_struct(char *text, layer_t *layer) {
             layer->weights_gradients = malloc(weights_gradientsSize * sizeof(float));
             layer->biases = malloc(biasesSize * sizeof(float));
             layer->biases_gradients = malloc(biases_gradientsSize * sizeof(float));
+            layer->neurons = malloc(biasesSize * sizeof(float));
             layer->weights_number = weightsSize;
             layer->weights_gradients_number = weights_gradientsSize;
             layer->biases_number = biasesSize;
             layer->biases_gradients_number = biases_gradientsSize;
+            layer->neurons_number = biasesSize;
             convert_json_to_array(weightsSize, weightsJSON, layer, WEIGHTS);
             convert_json_to_array(weights_gradientsSize, weights_gradientsJSON, layer, WEIGHTS_GRADIENTS);
             convert_json_to_array(biasesSize, biasesJSON, layer, BIASES);
             convert_json_to_array(biases_gradientsSize, biases_gradientsJSON, layer, BIASES_GRADIENTS);
+            initialize_array_of_floats(layer->neurons, layer->neurons_number);
         }
         strcpy(weights_name, WEIGHTS_NAME_IN_JSON);
         strcpy(weights_gradients_name, WEIGHTS_GRADIENTS_NAME_IN_JSON);

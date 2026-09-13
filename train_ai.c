@@ -11,6 +11,7 @@ int free_layer(layer_t *layer) {
         free(layer->weights_gradients);
         free(layer->biases);
         free(layer->biases_gradients);
+        free(layer->neurons);
         prev_layer = layer;
         layer = layer->next;
         free(prev_layer);
@@ -30,6 +31,8 @@ int print_layers(layer_t *layer) {
         print_array_of_floats(layer->biases, layer->biases_number);
         printf("\n\nbiases_gradients :\n");
         print_array_of_floats(layer->biases_gradients, layer->biases_gradients_number);
+        printf("\n\nneurons :\n");
+        print_array_of_floats(layer->neurons, layer->neurons_number);
         prev_layer = layer;
         layer = layer->next;
     }
@@ -37,6 +40,7 @@ int print_layers(layer_t *layer) {
 }
 
 int main() {
+    int inputs[INPUT_SIZE] = {0};
     layer_t *layer = NULL;
     char *text = NULL;
 

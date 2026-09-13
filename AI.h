@@ -4,9 +4,10 @@
 
 #define AI_FILE_NAME "Chess-AI.json"
 
-#define INPUT_SIZE 768
+#define INPUT_SIZE 10
 #define NUMBER_OF_LAYERS 3 // including output
-#define SIZE_OF_LAYERS {128, 64, 1} // the last are outputs
+#define SIZE_OF_WEIGHTS {INPUT_SIZE * 5, 5 * 7, 7 * 1} // the last are outputs
+#define SIZE_OF_BIASES {5, 7, 1} // the last are outputs
 
 #define INITIAL_WEIGHT_VALUE_LIMIT 0.2f
 
@@ -20,15 +21,18 @@
 #define BIASES_NAME_IN_JSON "biases" // max 64 characters
 #define BIASES_GRADIENTS_NAME_IN_JSON "biases_gradients" // max 64 characters
 
-typedef struct layer_t {
-    float *weights;
-    float *weights_gradients;
-    float *biases;
-    float *biases_gradients;
+typedef struct layer_t { // layer 1
+    float *weights; // 773 * 128
+    float *weights_gradients; // 773 * 128
+    float *biases; // 128
+    float *biases_gradients; // 128
+    float *neurons; // 128
+
     int weights_number;
     int weights_gradients_number;
     int biases_number;
     int biases_gradients_number;
+    int neurons_number;
     struct layer_t *next;
 } layer_t;
 
@@ -45,5 +49,6 @@ layer_t *reverse_struct_list(layer_t *layer);
 int write_in_file(char *file_name, char *text);
 int read_file(char *file_name, char **text);
 int print_array_of_floats(float *array, int arraySize);
+int initialize_array_of_floats(float *array, int arraySize);
 
 #endif
