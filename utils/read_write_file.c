@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "AI.h"
 
 char *read_line(FILE *file) {
     size_t capacity = 64;

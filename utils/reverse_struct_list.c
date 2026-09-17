@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "AI.h"
+#include "../AI.h"
 
 layer_t *reverse_struct_list(layer_t *layer) {
     layer_t *tmp_next = layer->next;

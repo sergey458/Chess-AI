@@ -2,7 +2,9 @@
 #ifndef AI_H
 #define AI_H
 
-#define AI_FILE_NAME "Chess-AI.json"
+#define AI_FILE_PATH "Chess-AI.json"
+#define DATASET_FILE_PATH "datasets/stockfish_position_evaluations.csv"
+#define DATASET_PARSING_FUNCTION read_and_train_stockfish(layer)
 
 #define INPUT_SIZE 10
 #define NUMBER_OF_LAYERS 3 // including output
@@ -50,5 +52,6 @@ int write_in_file(char *file_name, char *text);
 int read_file(char *file_name, char **text);
 int print_array_of_floats(float *array, int arraySize);
 int initialize_array_of_floats(float *array, int arraySize);
+int read_and_train_stockfish(layer_t *layer);
 
 #endif

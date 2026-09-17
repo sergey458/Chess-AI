@@ -57,7 +57,7 @@ int create_ai_json() {
     // convert the cJSON object to a JSON string
     char *json_str = cJSON_Print(json);
 
-    write_in_file(AI_FILE_NAME, json_str);
+    write_in_file(AI_FILE_PATH, json_str);
 
     // free the JSON string and cJSON object
     cJSON_free(json_str);

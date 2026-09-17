@@ -42,17 +42,22 @@ int print_layers(layer_t *layer) {
 int main() {
     int inputs[INPUT_SIZE] = {0};
     layer_t *layer = NULL;
-    char *text = NULL;
+    char *ai_text = NULL;
+    char *dataset = NULL;
 
-    if (access(AI_FILE_NAME, R_OK) == -1) {
+    if (access(AI_FILE_PATH, R_OK) == -1) {
         create_ai_json();
     }
-    read_file(AI_FILE_NAME, &text);
-    layer = convert_text_to_struct(text, layer);
+    read_file(AI_FILE_PATH, &ai_text);
+    layer = convert_text_to_struct(ai_text, layer);
     layer = reverse_struct_list(layer);
-    print_layers(layer);
+    // print_layers(layer);
+    DATASET_PARSING_FUNCTION;
+    // read_file(DATASET_FILE_PATH, &dataset);
+    // printf("%s\n", dataset);
 
     free_layer(layer);
-    free(text);
+    free(ai_text);
+    free(dataset);
     return 0;
 }
