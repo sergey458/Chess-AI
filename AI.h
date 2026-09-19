@@ -10,8 +10,8 @@
 
 #define INPUT_SIZE 772
 #define NUMBER_OF_LAYERS 3 // including output
-#define SIZE_OF_WEIGHTS {INPUT_SIZE * 5, 5 * 7, 7 * 1} // the last are outputs
-#define SIZE_OF_BIASES {5, 7, 1} // the last are outputs
+#define SIZE_OF_WEIGHTS {INPUT_SIZE * 128, 128 * 64, 64 * 1} // the last are outputs
+#define SIZE_OF_BIASES {128, 64, 1} // the last are outputs
 
 #define INITIAL_WEIGHT_VALUE_LIMIT 0.2f
 
@@ -41,8 +41,8 @@
 
 
 typedef struct layer_t { // layer 1
-    float *weights; // 773 * 128
-    float *weights_gradients; // 773 * 128
+    float *weights; // 772 * 128
+    float *weights_gradients; // 772 * 128
     float *biases; // 128
     float *biases_gradients; // 128
     float *neurons; // 128
@@ -64,7 +64,7 @@ typedef enum ArrayType_t {
 
 int create_ai_json();
 layer_t *convert_text_to_struct(char *text, layer_t *layer);
-int write_in_file(char *file_name, char *text);
+int convert_fen_to_binary(char *fen, int inputs[INPUT_SIZE]);
 
 int initialize_array_of_floats(float *array, int arraySize);
 char *malloc_and_strncpy(char *src, int n);
@@ -72,6 +72,7 @@ int my_strrev(char *str);
 int print_array_of_floats(float *array, int arraySize);
 int print_array_of_ints(int *array, int arraySize);
 int read_file(char *file_name, char **text);
+int write_in_file(char *file_name, char *text);
 layer_t *reverse_struct_list(layer_t *layer);
 
 int read_and_train_stockfish(layer_t *layer);
