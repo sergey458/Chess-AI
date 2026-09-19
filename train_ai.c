@@ -40,7 +40,6 @@ int print_layers(layer_t *layer) {
 }
 
 int main() {
-    int inputs[INPUT_SIZE] = {0};
     layer_t *layer = NULL;
     char *ai_text = NULL;
     char *dataset = NULL;
