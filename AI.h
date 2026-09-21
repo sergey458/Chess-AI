@@ -8,10 +8,15 @@
 #define MIN_DATASET_EVALUATION -1731
 #define MAX_DATASET_EVALUATION 1761
 
-#define INPUT_SIZE 772
+// #define INPUT_SIZE 772
+// #define NUMBER_OF_LAYERS 3 // including output
+// #define SIZE_OF_WEIGHTS {INPUT_SIZE * 128, 128 * 64, 64 * 1} // the last are outputs
+// #define SIZE_OF_BIASES {128, 64, 1} // the last are outputs
+#define INPUT_SIZE 2
 #define NUMBER_OF_LAYERS 3 // including output
-#define SIZE_OF_WEIGHTS {INPUT_SIZE * 128, 128 * 64, 64 * 1} // the last are outputs
-#define SIZE_OF_BIASES {128, 64, 1} // the last are outputs
+#define SIZE_OF_WEIGHTS {INPUT_SIZE * 1, 1 * 2, 2 * 1} // the last are outputs
+#define SIZE_OF_BIASES {1, 2, 1} // the last are outputs
+
 
 #define INITIAL_WEIGHT_VALUE_LIMIT 0.2f
 
@@ -74,6 +79,8 @@ int print_array_of_ints(int *array, int arraySize);
 int read_file(char *file_name, char **text);
 int write_in_file(char *file_name, char *text);
 layer_t *reverse_struct_list(layer_t *layer);
+
+int print_all_neuron_network(int inputs[INPUT_SIZE], layer_t *layer);
 
 int read_and_train_stockfish(layer_t *layer);
 
