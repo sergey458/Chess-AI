@@ -1,6 +1,6 @@
 To run Chess-AI :
 ```powershell
-gcc *.c cJSON/*.c zsv/src/zsv.c -I./zsv/include utils/*.c
+gcc *.c cJSON/*.c -I./zsv/include utils/*.c debug/*.c
 ```
 Then :
 ```powershell
